@@ -1,0 +1,47 @@
+/*
+    Program name: patient-form.css v1.0
+  Author: Sai Lohith Tippa
+  Date created: 2025-09-13
+  Date last edited: 2025-09-23
+  Version: 1.0
+  Description: Patient Registration Form for MIS 7375 HW1, with external CSS, dynamic banner date, and table-aligned inputs.
+*/
+.banner {
+  background-color: #ffecc5; /* Teal color */
+  color: white;
+  padding: 10px 0;
+  text-align: center;
+  position: relative;
+}
+.content {
+    background-image: url(./Images/page\ bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 100%;
+}
+.footer {
+  background-color: #e9a4a4;
+  color: rgb(0, 0, 0);
+  text-align: center;
+  padding: 10px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+
+form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+.required {
+  color: red;
+}
+.hint {
+  font-size: 0.95em; 
+  color: #555;
+}
