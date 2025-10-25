@@ -14,7 +14,7 @@
   position: relative;
 }
 .content {
-    background-image: url(./Images/page\ bg.png);
+    background-image: url(/Images/page\ bg.png);
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

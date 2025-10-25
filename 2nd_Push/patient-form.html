@@ -5,7 +5,7 @@
     Program name: patient-form.html v1.0
     Author: Sai Lohith Tippa
     Date created: 2025-09-13
-    Date last edited: 2025-09-26
+    Date last edited: 2025-10-24
     Version: 1.0
     Description: Patient Registration Form for MIS 7375 HW1, with external CSS, dynamic banner date, and table-aligned inputs.
  -->
@@ -13,13 +13,14 @@
     <meta name="author" content="Sai Lohith Tippa">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Form</title>
-    <link rel="stylesheet" href="patient-form.css">
+    <link rel="stylesheet" href="/2nd_Push/patient-form.css">
+    <script src="/2nd_Push/patient-form.js" defer></script>
 </head>
 <body>
         <!-- Top/Banner -->
-        <div class="banner" id="top" style="display: flex; align-items: center; justify-content: space-between; padding: 16px 0;">
+        <div class="banner" id="top" style="display: flex; align-items: center; justify-content: space-between;">
                 <!-- Logo (left) -->
-                <img src="Images/logo.png" alt="We'R'FAKE Medical Logo" class="logo" style="height: 80px; width: 80px; object-fit: contain; margin-right: 16px;" />
+                <img src="/Images/logo.png" alt="We'R'FAKE Medical Logo" class="logo" style="height: 80px; width: 80px; object-fit: contain; margin-right: 16px;" />
                 
                 <!-- Company Name (center) -->
                 <h1 class="company" style="flex: 1; text-align: center; margin: 0; color:black;">We'R' Fake Medical</h1>
@@ -30,66 +31,37 @@
                         <span id="currentDayDate"></span>
                 </div>
         </div>
-        <!-- Script to set current date -->
-        <script>
-                document.addEventListener("DOMContentLoaded", function() {
-                        const today = new Date();
-                        const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-                        const months = [
-                                "Jan", "Feb", "Mar", "Apr", "May", "Jun",
-                                "Jul", "Aug", "Sept", "Oct", "Nov", "Dec"
-                        ];
-                        function getOrdinal(n) {
-                                if (n > 3 && n < 21) return 'th';
-                                switch (n % 10) {
-                                        case 1: return 'st';
-                                        case 2: return 'nd';
-                                        case 3: return 'rd';
-                                        default: return 'th';
-                                }
-                        }
-                        const dayName = days[today.getDay()];
-                        const monthName = months[today.getMonth()];
-                        const dateNum = today.getDate();
-                        const ordinal = getOrdinal(dateNum);
-                        const year = today.getFullYear();
-                        const dateElem = document.getElementById('currentDayDate');
-                        dateElem.textContent = `${dayName}, ${monthName} ${dateNum}${ordinal}, ${year}`;
-                        dateElem.style.color = "black";
-                });
-        </script>
-
 <div class="content">
         <div>
                 <h2 class="section-title" style="text-align: center;">Patient Registration Form</h2>
         </div>
 
         <!-- Building form elements -->
-        <form id="patientForm" action="thankyou.html"><!-- after successful submitting the form it redirects to thank you -->
+        <form id="patientForm" action="/2nd_Push/thankyou.html"><!-- after successful submitting the form it redirects to thankyou.html -->
             <table class="form-table" role="presentation">
                 <span class="required">*</span><span class="hint"> Required fields</span>
                 <!-- Patient Info -->
                 <tr><th colspan="4" class="group-head">Patient Information</th></tr>
                 <tr>
                     <td><span class="required">*</span><label for="firstName">First Name</label></td>
-                    <td><input type="text" id="firstName" name="firstName" maxlength="30" required class="required" /></td>
+                    <td><input type="text" id="firstName" name="firstName" maxlength="30" required  /></td>
                     <td><label for="middleinitile">&nbsp;&nbsp;Middle Initial</label></td>
                     <td><input type="text" id="middleinitile" name="middleinitile" maxlength="1" /></td>
                 </tr>
                 <tr>
                     <td><span class="required">*</span><label for="lastName">Last Name</label></td>
-                    <td><input type="text" id="lastName" name="lastName" maxlength="30" required class="required" /></td>
+                    <td><input type="text" id="lastName" name="lastName" maxlength="30" required  /></td>
                     <td><span class="required">*</span><label for="dob">Date of Birth</label></td>
                     <td>
                         <input type="text" id="dob" name="dob" placeholder="MM/DD/YYYY"
-                                     pattern="^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/\d{4}$" required class="required" />
+                                     pattern="^(0[1-9]|1[0-2])\/(0[1-9]|[12]\d|3[01])\/\d{4}$" required  />
                     </td>
                 </tr>
                 <tr>
                     <td><span class="required">*</span><label for="ssn">Social Security</label></td>
                     <td>
                         <input type="password" id="ssn" name="ssn" maxlength="11" minlength="11"
-                                     placeholder="###-##-####" required class="required"
+                                     placeholder="###-##-####" required"
                                      oninput="this.value = this.value.replace(/\D/g,'').replace(/(\d{3})(\d{0,2})(\d{0,4})/, function(_,a,b,c){return a+(b?'-'+b:'')+(c?'-'+c:'');}).substr(0,11);" />
                     </td>
                     <td><label for="phone">&nbsp;&nbsp;Phone (optional)</label></td>
@@ -101,7 +73,7 @@
                 <tr><th colspan="4" class="group-head">Address</th></tr>
                 <tr>
                     <td><span class="required">*</span><label for="addr1">Address Line 1</label></td>
-                    <td colspan="3"><input type="text" id="addr1" name="addr1" maxlength="30" required class="required" /></td>
+                    <td colspan="3"><input type="text" id="addr1" name="addr1" maxlength="30" required /></td>
                 </tr>
                 <tr>
                     <td><label for="addr2">&nbsp;&nbsp;Address Line 2</label></td>
@@ -109,7 +81,7 @@
                 </tr>
                 <tr>
                     <td><span class="required">*</span><label for="city">City</label></td>
-                    <td><input type="text" id="city" name="city" maxlength="30" required class="required" /></td>
+                    <td><input type="text" id="city" name="city" maxlength="30" required /></td>
                     <td><span class="required">*</span><label for="state">State</label></td>
                     <td>
                         <select id="state" name="state" required>
@@ -134,17 +106,17 @@
                     <td><span class="required">*</span><label for="zip">Zip Code</label></td>
                     <td>
                         <input type="text" id="zip" name="zip" placeholder="##### or #####-####"
-                                     pattern="^\d{5}(-\d{4})?$" required class="required" />
+                                     pattern="^\d{5}(-\d{4})?$" required  />
                     </td>
                     <td><span class="required">*</span><label for="email">Email</label></td>
-                    <td><input type="email" id="email" name="email" placeholder="Email" required class="required" /></td>
+                    <td><input type="email" id="email" name="email" placeholder="Email" required  /></td>
                 </tr>
 
                 <!-- Emergency Contact -->
                 <tr><th colspan="4" class="group-head">Emergency Contact</th></tr>
                 <tr>
                     <td><span class="required">*</span><label for="emgName">Name</label></td>
-                    <td><input type="text" id="emgName" name="emgName" maxlength="60" required class="required" /></td>
+                    <td><input type="text" id="emgName" name="emgName" maxlength="60" required  /></td>
                     <td><span class="required">*</span><label for="emgRelation">Relation</label></td>
                     <td>
                         <select id="emgRelation" name="emgRelation" required>
@@ -161,7 +133,7 @@
                 </tr>
                 <tr>
                     <td><span class="required">*</span><label for="emgPhone">Phone</label></td>
-                    <td><input type="tel" id="emgPhone" name="emgPhone" placeholder="(###) ###-####" required class="required" /></td>
+                    <td><input type="tel" id="emgPhone" name="emgPhone" placeholder="(###) ###-####" required /></td>
                     <td><label for="emgAltPhone">&nbsp;&nbsp;Alt Phone (optional)</label></td>
                     <td><input type="tel" id="emgAltPhone" name="emgAltPhone" placeholder> </td> 
                 </tr>
@@ -197,8 +169,11 @@
                 <tr>
                     <td>Vaccinated</td>
                     <td colspan="3" class="radios">
-                        <label><input type="radio" name="vaccinated" value="yes" /> Yes</label>
-                        <label><input type="radio" name="vaccinated" value="no" /> No</label>
+                        <div style="display:flex; gap:12px; align-items:center;"></div>
+                            <label for="vacY"><input type="radio" id="vacY" name="vaccinated" value="Yes"> Yes</label>
+                            <label for="vacN"><input type="radio" id="vacN" name="vaccinated" value="No"> No</label>
+                            <label for="vacU"><input type="radio" id="vacU" name="vaccinated" value="Unsure"> Unsure</label>
+                        </div>
                     </td>
                 </tr>
                 <tr>
@@ -206,8 +181,16 @@
                     <td colspan="3" class="radios">
                         <label><input type="radio" name="insurance" value="yes" /> Yes</label>
                         <label><input type="radio" name="insurance" value="no" /> No</label>
-                </tr>
+                    </td>
+
                 <tr>
+                    <td><label for="salary">Salary</label></td>
+                    <td colspan="3" style="display:flex; align-items:center; gap:12px;">
+                        <input type="range" id="salary" name="salary" min="20000" max="200000" step="1000" value="20000"
+                                     oninput="document.getElementById('salaryOut').textContent = '$' + Number(this.value).toLocaleString();" />
+                        <span id="salaryOut" aria-live="polite" style="min-width:90px; text-align:right; display:inline-block;">$20,000</span>
+                    </td>
+                </tr>
                     <td><label for="health">Health (1-10)</label></td>
                     <td colspan="3">
                         <span id="healthMin">1</span>
@@ -221,75 +204,98 @@
                 <tr><th colspan="4" class="group-head">Account Information</th></tr>
                 <tr>
                     <td><span class="required">*</span><label for="username">Username</label></td>
-                    <td><input type="text" id="username" name="username" maxlength="30" required class="required" /></td>
+                    <td><input type="text" id="username" name="username" maxlength="30" required /></td>
                     <td><span class="required">*</span><label for="accountEmail">Account Email</label></td>
-                    <td><input type="email" id="accountEmail" name="accountEmail" maxlength="50" required class="required" /></td>
+                    <td><input type="email" id="accountEmail" name="accountEmail" maxlength="50" required/></td>
                 </tr>
                 <tr>
                     <td><span class="required">*</span><label for="password">Password</label></td>
                     <td>
                         <input type="password" id="password" name="password" minlength="6" maxlength="15"
                                      pattern="^(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,15}$"
-                                     title="6-15 chars, at least 1 uppercase and 1 special character" required class="required" />
+                                     title="6-15 chars, at least 1 uppercase and 1 special character" required  />
                     </td>
                     <td><span class="required">*</span><label for="confirmPassword">Confirm Password</label></td>
                     <td>
                         <input type="password" id="confirmPassword" name="confirmPassword" minlength="6" maxlength="15"
                                      pattern="^(?=.*[A-Z])(?=.*[!@#$%^&*]).{6,15}$"
-                                     title="Must match password and meet requirements" required class="required" />
+                                     title="Must match password and meet requirements" required/>
                     </td>
                 </tr>
                 <tr>
                     <td colspan="4" style="padding-top: 4px;">
                         <span class="hint" style="font-size: 0.95em; color: #555;">
         </tr>
-        <script>
-          // Password match validation
-          document.addEventListener('DOMContentLoaded', function() {
-            var pwd = document.getElementById('password');
-            var cpwd = document.getElementById('confirmPassword');
-            var msg = document.getElementById('passwordMatchMsg');
-            function checkMatch() {
-              if (cpwd.value && pwd.value !== cpwd.value) {
-                msg.textContent = "Passwords do not match";
-                cpwd.setCustomValidity("Passwords do not match");
-              } else {
-                msg.textContent = "";
-                cpwd.setCustomValidity("");
-              }
-            }
-            pwd.addEventListener('input', checkMatch);
-            cpwd.addEventListener('input', checkMatch);
-          });
-        </script>
+        
         <tr>
         <!-- submit -->
         <tr>
         <td colspan="4" class="buttons" style="text-align: center;">
-            <button type="reset" class="btn reset">CLEAR</button>
-            <button type="submit" class="btn submit">SUBMIT</button>
+            <div class="form-actions">
+                <button type="button" id="btnReview">Review</button>
+                <button type="submit" id="btnSubmit">Submit</button>
+                <button type="reset" id="btnReset">Clear</button>
+            </div>
         </td>
         </tr>
       </table>
     </form>
   </div>
-    <!-- ===== Footer ===== -->
-  <div class="footer" align="center">
-    <div class="footer-grid">
-      <div>
-        <strong>We'R'FAKE Medical</strong><br />
-        PO BOX 18881<br />
-        Sugar Land, TX 77496
-      </div>
-      <div class="footer-actions">
-        <a href="https://github.com/sailohith282" id="contact-btn" class="btn btn-contact">Contact Us</a>
-        <div class="social">
-          <a href="#" class="sm">Instragram</a>
-          <a href="#" class="sm">X</a>
-         
-        </div>
-      </div>
-    </div>
+  <section id="reviewArea" aria-live="polite" hidden>
+  <h2>PLEASE REVIEW THIS INFORMATION</h2>
+  <div id="reviewContent" class="review-grid"></div>
+  <div class="review-actions">
+    <button type="button" id="btnHideReview">Hide Review</button>
   </div>
+</section>
+
+    <!-- ===== Footer ===== -->
+<footer class="site-footer">
+    <div style="max-width:1000px; margin:0 auto; text-align:center; padding:24px 16px;">
+        <!-- Company name and address stacked -->
+        <div style="margin-bottom:18px;">
+            <strong style="font-size:1.1rem;">We'R'FAKE Medical</strong><br />
+            PO BOX 18881<br />
+            Sugar Land, TX 77496
+        </div>
+
+        <!-- Footer links in a 3-column table, centered -->
+        <table style="margin:0 auto; max-width:200px; width:100%; border-collapse:collapse; text-align:center;">
+          <tr>
+            <td style="vertical-align:top; padding:12px; min-width:160px;">
+              <h3 style="margin:0 0 8px 0;" class="footer-heading">Info</h3>
+              <ul style="list-style:none; padding:0; margin:0;">
+            <li><a href="/MIS7375-TPS/2n_Push/index.html">About Us</a></li>
+            <li><a href="https://github.com/sailohith282">Contact</a></li>
+            <li><a href="#">Terms of Service</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+              </ul>
+            </td>
+
+            <td style="vertical-align:top; padding:12px; min-width:160px;">
+              <h3 style="margin:0 0 8px 0;" class="footer-heading">Services</h3>
+              <ul style="list-style:none; padding:0; margin:0;">
+            <li><a href="/MIS7375-TPS/2n_Push/patient-form.html">Patient Portal</a></li>
+            <li><a href="#">Billing &amp; Insurance</a></li>
+            <li><a href="#">Support</a></li>
+              </ul>
+            </td>
+
+            <td style="vertical-align:top; padding:12px; min-width:160px;">
+              <h3 style="margin:0 0 8px 0;"class="footer-heading">Follow Us</h3>
+              <ul style="list-style:none; padding:0; margin:0;">
+            <li><a href="https://www.instagram.com/sai_292001/">Instagram</a></li>
+            <li><a href="https://www.linkedin.com/in/sai-lohith-tippa-a20ab7179/">LinkedIn</a></li>
+              </ul>
+            </td>
+          </tr>
+        </table>
+
+        <div style="margin-top:16px; font-size:0.9rem; color:#ea8585;">
+            © 2025 We'R'FAKE Medical | All Rights Reserved
+        </div>
+    </div>
+</footer>
+</div>
 </body>
 </html>
