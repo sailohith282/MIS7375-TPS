@@ -1,0 +1,141 @@
+/*
+    Program name: patient-form.css v1.0
+  Author: Sai Lohith Tippa
+  Date created: 2025-09-13
+  Date last edited: 2025-11-14
+  Version: 3.0
+  Description: Patient Registration Form for MIS 7375 HW1, with external CSS, dynamic banner date, and table-aligned inputs.
+*/
+
+
+
+.banner {
+  background-color: #ffecc5; /* Teal color */
+  color: white;
+  text-align: center;
+  position: relative;
+}
+/*Make the banner sticky*/
+.banner {
+  position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+.content {
+    background-image: url(/Images/page\ bg.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 100%;
+}
+.site-footer {
+  background-color: #106393;
+  text-align: center;
+  padding: 10px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  color: rgb(195,192,192);
+  text-align: center;
+  padding: 24px 16px;
+}
+.site-footer a {
+  color: rgb(195,192,192);
+  text-decoration: none;
+}
+.site-footer a:hover {
+  text-decoration: underline;
+  color: #ffffff;
+}
+/* Fixed Footer */
+.site-footer {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    z-index: 999;
+}
+
+
+form {
+  max-width: 600px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+}
+.required {
+  color: red;
+}
+.hint {
+  font-size: 0.95em; 
+  color: #555;
+}
+#reviewArea {
+  max-width: 860px;
+  margin: 32px auto 24px;
+  padding: 16px 18px;
+  background: #fff;
+  border: 1px solid #ddd;
+}
+#reviewArea h2 {
+  text-align: center;
+  letter-spacing: .5px;
+  margin: 0 0 14px 0;
+  font-weight: 600;
+}
+
+.review-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 16px;
+}
+.review-table th,
+.review-table td {
+  padding: 6px 8px;
+  vertical-align: top;
+}
+.review-table tr + tr td {
+  border-top: 1px dashed #e6e6e6;
+}
+.review-label   { width: 260px; font-weight: 600; }
+.review-value   { width: auto;  }
+.review-status  { width: 160px; text-align: right; font-weight: 600; }
+
+.status-pass  { color: #1a9b2b; }   /* green */
+.status-error { color: #cc1e1e; }   /* red  */
+
+.review-subhead {
+  text-align: center;
+  font-weight: 600;
+  margin: 10px 0 6px;
+  letter-spacing: .3px;
+}
+.review-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.field-error {
+  display: block;
+  color: #cc1e1e;
+  font-size: 0.85rem;
+  margin-top: 2px;
+}
+
+input.error,
+select.error,
+textarea.error {
+  border-color: #cc1e1e;
+  background-color: #fff5f5;
+}
+
+#iframeContainer iframe {
+    width: 100%;
+    height: 350px;
+    border-radius: 10px;
+    border: 2px solid #cfcfcf;
+}
+body {
+    padding-top: 10px;
+    padding-bottom: 25%;
+}
