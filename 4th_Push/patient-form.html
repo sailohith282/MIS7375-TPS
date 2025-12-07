@@ -27,6 +27,7 @@
         <div style="display: flex; align-items: center; margin-left: 16px;">
             <span style="font-weight: bold; margin-right: 8px; color:black;">Today is :</span>
             <span id="currentDayDate"></span>
+            <div id="currentTime" style="font-weight:bold; color:#444; margin-bottom:15px;"></div>
         </div>
     </div>
 
@@ -359,5 +360,23 @@
             </div>
         </div>
     </footer>
+
+    <!-- INACTIVITY WARNING MODAL -->
+<div id="timeoutWarning" 
+     style="display:none; 
+            position:fixed; 
+            top:0; left:0; width:100%; height:100%; 
+            background:rgba(0,0,0,0.5); 
+            justify-content:center; 
+            align-items:center; 
+            z-index:2000;">
+
+  <div style="background:white; padding:20px; border-radius:8px; text-align:center; width:300px;">
+      <h3>Are you still there?</h3>
+      <p>You’ve been inactive for a while.</p>
+      <button id="stayBtn" style="padding:8px 15px; margin-top:10px;">Continue</button>
+  </div>
+</div>
+
 </body>
 </html>

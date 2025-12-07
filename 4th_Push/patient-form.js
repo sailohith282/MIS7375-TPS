@@ -32,6 +32,68 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+// LIVE CLOCK (TIME-BASED EVENT REQUIREMENT)
+function updateClock() {
+  const now = new Date();
+
+  const hours = now.getHours().toString().padStart(2, "0");
+  const minutes = now.getMinutes().toString().padStart(2, "0");
+  const seconds = now.getSeconds().toString().padStart(2, "0");
+
+  const timeString = `${hours}:${minutes}:${seconds}`;
+
+  const timeElem = document.getElementById("currentTime");
+  if (timeElem) {
+    timeElem.textContent = `Current Time: ${timeString}`;
+  }
+}
+
+// run immediately on page load
+updateClock();
+
+// update every second
+setInterval(updateClock, 1000);
+
+
+/* ---------------- INACTIVITY TIMER (TIME-BASED EVENT #2) ---------------- */
+
+let inactivityTimer;
+const TIME_LIMIT = 2 * 60 * 1000; // 2 minutes
+
+function resetInactivityTimer() {
+    clearTimeout(inactivityTimer);
+    inactivityTimer = setTimeout(showTimeoutWarning, TIME_LIMIT);
+}
+
+function showTimeoutWarning() {
+    const modal = document.getElementById("timeoutWarning");
+    if (modal) modal.style.display = "flex";
+}
+
+function stayOnPage() {
+    const modal = document.getElementById("timeoutWarning");
+    if (modal) modal.style.display = "none";
+    resetInactivityTimer();
+}
+
+// Reset timer on ANY user activity
+["click", "mousemove", "keydown", "scroll", "touchstart"]
+.forEach(evt => {
+    document.addEventListener(evt, resetInactivityTimer);
+});
+
+// Start timer when page loads
+document.addEventListener("DOMContentLoaded", resetInactivityTimer);
+
+// Button to continue session
+document.addEventListener("DOMContentLoaded", () => {
+    const stayBtn = document.getElementById("stayBtn");
+    if (stayBtn) {
+        stayBtn.addEventListener("click", stayOnPage);
+    }
+});
+
+
 // FETCH API for States List
 document.addEventListener("DOMContentLoaded", async function() {
   const stateSelect = document.getElementById("state");
