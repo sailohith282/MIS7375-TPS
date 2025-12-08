@@ -92,24 +92,16 @@
                 <tr>
                     <td><span class="required">*</span><label for="ssn">Social Security</label></td>
                     <td>
-                    <input
-  type="password"
-  id="ssn"
-  name="ssn"
-  maxlength="11"
-  minlength="11"
-  placeholder="###-##-####"
-  required
-  oninput="
-    let d = this.value.replace(/\D/g,'').slice(0,9);
-    if (d.length > 5) {
-      this.value = d.replace(/(\d{3})(\d{2})(\d{0,4})/, '$1-$2-$3');
-    } else if (d.length > 3) {
-      this.value = d.replace(/(\d{3})(\d{0,2})/, '$1-$2');
-    } else {
-      this.value = d;
-    }
-  " />
+                    <input type="password" id="ssn" name="ssn" maxlength="11" minlength="11" placeholder="###-##-####" required
+                    oninput=" let d = this.value.replace(/\D/g,'').slice(0,9);
+                    if (d.length > 5) {
+                        this.value = d.replace(/(\d{3})(\d{2})(\d{0,4})/, '$1-$2-$3');
+                     } else if (d.length > 3) {
+                        this.value = d.replace(/(\d{3})(\d{0,2})/, '$1-$2');
+                    } else {
+                        this.value = d;
+                    }
+                    " />
 
                     </td>
                     <td><label for="phone">&nbsp;&nbsp;Phone (optional)</label></td>
