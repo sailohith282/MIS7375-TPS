@@ -13,8 +13,8 @@
     <meta name="author" content="Sai Lohith Tippa">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Form</title>
-    <link rel="stylesheet" href="/3rd_Push/patient-form.css">
-    <script src="/3rd_Push/patient-form.js" defer></script>
+    <link rel="stylesheet" href="/patient-form.css">
+    <script src="/patient-form.js" defer></script>
 </head>
 <body>
     <!-- Top/Banner -->
@@ -27,16 +27,38 @@
         <div style="display: flex; align-items: center; margin-left: 16px;">
             <span style="font-weight: bold; margin-right: 8px; color:black;">Today is :</span>
             <span id="currentDayDate"></span>
+            <div id="currentTime" style="font-weight:bold; color:#444; margin-bottom:15px;"></div>
         </div>
     </div>
 
     <div class="content">
+         <!-- Welcome Back Banner (Shown if cookie exists) -->
+    <div id="welcomeBackMsg"
+         style="display:none; 
+                font-weight:bold; 
+                color:green; 
+                margin-bottom:12px; 
+                font-size:18px;">
+    </div>
+
+    <!-- “Not You?” Reset Link -->
+    <a id="newUserLink"
+       href="#"
+       onclick="startNewPatient()"
+       style="display:none; 
+              font-size:14px; 
+              color:#0077cc; 
+              cursor:pointer; 
+              text-decoration:underline;">
+       Not you? Start as a NEW PATIENT
+    </a>
+
         <div>
             <h2 class="section-title" style="text-align: center;">Patient Registration Form</h2>
         </div>
 
         <!-- Building form elements -->
-        <form id="patientForm" action="/3rd_Push/thankyou.html" novalidate>
+        <form id="patientForm" action="/thankyou.html" novalidate>
             <table class="form-table" role="presentation" style="width:100%;">
                 <tr>
                     <td colspan="4"><span class="required">*</span><span class="hint"> Required fields</span></td>
@@ -47,6 +69,14 @@
                 <tr>
                     <td><span class="required">*</span><label for="firstName">First Name</label></td>
                     <td><input type="text" id="firstName" name="firstName" maxlength="30" required /></td>
+                    <tr>
+    <td></td>
+    <td colspan="3">
+        <input type="checkbox" id="rememberMe" checked />
+        <label for="rememberMe">Remember Me (save my name for next visit)</label>
+       </td>
+</tr>
+
                     <td><label for="middleinitile">&nbsp;&nbsp;Middle Initial</label></td>
                     <td><input type="text" id="middleinitile" name="middleinitile" maxlength="1" /></td>
                 </tr>
@@ -62,24 +92,16 @@
                 <tr>
                     <td><span class="required">*</span><label for="ssn">Social Security</label></td>
                     <td>
-                        <<input
-  type="password"
-  id="ssn"
-  name="ssn"
-  maxlength="11"
-  minlength="11"
-  placeholder="###-##-####"
-  required
-  oninput="
-    let d = this.value.replace(/\D/g,'').slice(0,9);
-    if (d.length > 5) {
-      this.value = d.replace(/(\d{3})(\d{2})(\d{0,4})/, '$1-$2-$3');
-    } else if (d.length > 3) {
-      this.value = d.replace(/(\d{3})(\d{0,2})/, '$1-$2');
-    } else {
-      this.value = d;
-    }
-  " />
+                    <input type="password" id="ssn" name="ssn" maxlength="11" minlength="11" placeholder="###-##-####" required
+                    oninput=" let d = this.value.replace(/\D/g,'').slice(0,9);
+                    if (d.length > 5) {
+                        this.value = d.replace(/(\d{3})(\d{2})(\d{0,4})/, '$1-$2-$3');
+                     } else if (d.length > 3) {
+                        this.value = d.replace(/(\d{3})(\d{0,2})/, '$1-$2');
+                    } else {
+                        this.value = d;
+                    }
+                    " />
 
                     </td>
                     <td><label for="phone">&nbsp;&nbsp;Phone (optional)</label></td>
@@ -101,22 +123,9 @@
                     <td><input type="text" id="city" name="city" maxlength="30" required /></td>
                     <td><span class="required">*</span><label for="state">State</label></td>
                     <td>
-                        <select id="state" name="state" required>
-                            <option value="" selected>-- Select --</option>
-                            <option>AL</option><option>AK</option><option>AZ</option><option>AR</option>
-                            <option>CA</option><option>CO</option><option>CT</option><option>DE</option>
-                            <option>DC</option><option>FL</option><option>GA</option><option>HI</option>
-                            <option>ID</option><option>IL</option><option>IN</option><option>IA</option>
-                            <option>KS</option><option>KY</option><option>LA</option><option>ME</option>
-                            <option>MD</option><option>MA</option><option>MI</option><option>MN</option>
-                            <option>MS</option><option>MO</option><option>MT</option><option>NE</option>
-                            <option>NV</option><option>NH</option><option>NJ</option><option>NM</option>
-                            <option>NY</option><option>NC</option><option>ND</option><option>OH</option>
-                            <option>OK</option><option>OR</option><option>PA</option><option>PR</option>
-                            <option>RI</option><option>SC</option><option>SD</option><option>TN</option>
-                            <option>TX</option><option>UT</option><option>VT</option><option>VA</option>
-                            <option>WA</option><option>WV</option><option>WI</option><option>WY</option>
-                        </select>
+                      <select id="state" name="state" required>
+                        <option value="" selected>-- Select --</option>
+                      </select>
                     </td>
                 </tr>
                 <tr>
@@ -265,6 +274,29 @@
         </form>
     </div>
 
+
+
+    <!--IFRAME DEMO -->
+<div id="infoFrameContainer" style="margin: 30px auto; max-width: 900px; text-align:center;">
+    <h3 style="margin-bottom: 12px; color:#333;">Helpful External Resource</h3>
+
+    <iframe 
+        src="https://www.example.com/" 
+        title="External Resource"
+        style="
+            width: 100%;
+            height: 350px;
+            border: 2px solid #ccc;
+            border-radius: 8px;
+        ">
+    </iframe>
+
+    <p style="font-size: 0.9rem; color:#666; margin-top: 8px;">
+        This external site(example.com) is shown using an HTML &lt;iframe&gt; as an example for Assignment 4.
+    </p>
+</div>
+
+
     <section id="reviewArea" aria-live="polite" hidden>
         <h2>PLEASE REVIEW THIS INFORMATION</h2>
         <div id="reviewContent" class="review-grid"></div>
@@ -289,7 +321,7 @@
                 <td style="vertical-align:top; padding:12px; min-width:160px;">
                   <h3 style="margin:0 0 8px 0;" class="footer-heading">Info</h3>
                   <ul style="list-style:none; padding:0; margin:0;">
-                    <li><a href="/MIS7375-TPS/2n_Push/index.html">About Us</a></li>
+                    <li><a href="/index.html">About Us</a></li>
                     <li><a href="https://github.com/sailohith282">Contact</a></li>
                     <li><a href="#">Terms of Service</a></li>
                     <li><a href="#">Privacy Policy</a></li>
@@ -299,7 +331,7 @@
                 <td style="vertical-align:top; padding:12px; min-width:160px;">
                   <h3 style="margin:0 0 8px 0;" class="footer-heading">Services</h3>
                   <ul style="list-style:none; padding:0; margin:0;">
-                    <li><a href="/MIS7375-TPS/2n_Push/patient-form.html">Patient Portal</a></li>
+                    <li><a href="/patient-form.html">Patient Portal</a></li>
                     <li><a href="#">Billing &amp; Insurance</a></li>
                     <li><a href="#">Support</a></li>
                   </ul>
@@ -320,5 +352,23 @@
             </div>
         </div>
     </footer>
+
+    <!-- INACTIVITY WARNING MODAL -->
+<div id="timeoutWarning" 
+     style="display:none; 
+            position:fixed; 
+            top:0; left:0; width:100%; height:100%; 
+            background:rgba(0,0,0,0.5); 
+            justify-content:center; 
+            align-items:center; 
+            z-index:2000;">
+
+  <div style="background:white; padding:20px; border-radius:8px; text-align:center; width:300px;">
+      <h3>Are you still there?</h3>
+      <p>You’ve been inactive for a while.</p>
+      <button id="stayBtn" style="padding:8px 15px; margin-top:10px;">Continue</button>
+  </div>
+</div>
+
 </body>
 </html>
